@@ -58,7 +58,7 @@ async def on_message(message: str):
     call_bad = re.compile(r'\b([bB]ad)\s+([bB]ot)\b')
     bad_match = call_bad.search(message.content)
 
-    call_vi = re.compile(r'^:w$')
+    call_vi = re.compile(r'^:wq?$')
     vi_match = call_vi.search(message.content)
 
     
