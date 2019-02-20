@@ -27,6 +27,9 @@ import subprocess
 with open("token.txt") as t:
     token = t.readline().strip()
 
+with open("owner.txt") as o:
+    owner = o.readline().strip()
+
 bot = commands.Bot(command_prefix = 'oj ', description = 'Glorious Pipimi.')
 
 bot.remove_command('help')
@@ -253,12 +256,12 @@ async def join(ctx, member: discord.Member = None):
 @bot.command( name = 'bash',
         pass_context = True)
 async def bash(ctx, *args):
-    if ctx.message.author.server_permissions.administrator:
+    if ctx.message.author.id == owner:
         output = subprocess.run(args, stdout=subprocess.PIPE)
         await bot.send_message(ctx.message.channel, output.stdout.decode('ascii'))
         print(output.stdout.decode('ascii'))
     else:
-        await bot.say("You don't have admin privileges!!!!!! D:<")
+        await bot.say("You're not my owner!!!!!! D:<")
 
 if __name__ == '__main__':
     bot.run(token)
