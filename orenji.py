@@ -21,6 +21,7 @@ import datetime
 import asyncio
 import json
 import requests
+import subprocess
 
 
 with open("token.txt") as t:
@@ -248,6 +249,16 @@ async def join(ctx, member: discord.Member = None):
                   str(member)[:-5] + 
 	          ', joined at: ' + 
 	          str(member.joined_at))
+    
+@bot.command( name = 'bash',
+        pass_context = True)
+async def bash(ctx, *args):
+    if ctx.message.author.server_permissions.administrator:
+        output = subprocess.run(args, stdout=subprocess.PIPE)
+        await bot.send_message(ctx.message.channel, output.stdout.decode('ascii'))
+        print(output.stdout.decode('ascii'))
+    else:
+        await bot.say("You don't have admin privileges!!!!!! D:<")
 
 if __name__ == '__main__':
     bot.run(token)
