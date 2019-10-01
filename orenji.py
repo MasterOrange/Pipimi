@@ -4,7 +4,7 @@
 '''
 Pipimi 2.0
 flag: 'oj '
-Last updated: February 14, 2019
+Last updated: October 1, 2019
 Author: Orange#7401
 
 To do:
